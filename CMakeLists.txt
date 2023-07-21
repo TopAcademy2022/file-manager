@@ -27,7 +27,7 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
 # Set boost library dir (README.md points to the line)
-set (BOOST_LIBRARYDIR "path/to/build/boost_library")
+set (BOOST_LIBRARYDIR "./libs/lib")
 
 add_executable(${PROJECT_NAME} ${START} ${CORE})
 
