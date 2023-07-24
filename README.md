@@ -6,9 +6,11 @@ File manager training project
 
     1. Clone this repository;
     2. Make sure you have the Boost c++ library version 1.45.0 or higher;
-    3. Change the path to the built Boost library in file-manager/CMakeList.txt (line 30):
-        Replace "path/to/build/boost" in command "set (BOOST_LIBRARYDIR "path/to/build/boost")" 
-		with the path to the **built** Boost library (where the .lib files are);
+		If you want cmake to download the Boost library itself, 
+		change the "set (FIRST_BOOST_INSTALL OFF)" flag to ON on the 36 line.
+    3. If you don't want cmake to download the Boost library - сhange the path 
+		to the Boost library in file-manager/CMakeList.txt (line 39 and 40):
+        Replace "./library/boost_1_80_0" to the Boost library;
     4. Using cmake to build the project. Example: 
         create a folder to build the project (build);
         go to "build" folder;
