@@ -9,3 +9,6 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+library/boost_1_80_0
+library/install_boost_1_80_0
