@@ -7,11 +7,13 @@ File manager training project
     1. Clone this repository;
     2. Make sure you have the Boost c++ library version 1.45.0 or higher;
 		If you want cmake to download the Boost library itself, 
-		change the "set (FIRST_BOOST_INSTALL OFF)" flag to ON on the 36 line.
+		change the "set (FIRST_BOOST_INSTALL OFF)" flag to ON on the 19 line.
     3. If you don't want cmake to download the Boost library - сhange the path 
-		to the Boost library in file-manager/CMakeList.txt (line 39 and 40):
+		to the Boost library in file-manager/CMakeList.txt (line 37 and 38):
         Replace "./library/boost_1_80_0" to the Boost library;
-    4. Using cmake to build the project. Example: 
+	4. If you don't want run unit tests change the "ENABLE_TESTING" to "OFF" in 
+		file-manager/CMakeList.txt (line 61);
+    5. Using cmake to build the project. Example: 
         create a folder to build the project (build);
         go to "build" folder;
         run "cmake .." in "build" folder;

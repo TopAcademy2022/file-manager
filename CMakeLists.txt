@@ -15,6 +15,12 @@ set(
 		src/status.cpp
 )
 
+# Set DEFAULT install (README.md points to this line)
+set (FIRST_BOOST_INSTALL ON)
+
+# Include default library/boost_1_80_0
+include(./library/CMakeLists.txt)
+
 # Only find static libs
 set(Boost_USE_STATIC_LIBS ON)
 
@@ -26,22 +32,15 @@ set(Boost_USE_RELEASE_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-# Include default library/boost_1_80_0
-include(./library/CMakeLists.txt)
-
-# Enable testing functionality
-enable_testing()
-
-# Set DEFAULT install (README.md points to this line)
-set (FIRST_BOOST_INSTALL OFF)
-
-# Switch BOOST_ROOT and BOOST_LIBRARYDIR if FIRST_BOOST_INSTALL != ON
-set (BOOST_ROOT "./library/boost_1_80_0")
-set (BOOST_LIBRARYDIR "./library/install_boost_1_80_0/lib")
+if(WIN32)
+	# Switch BOOST_ROOT and BOOST_LIBRARYDIR if FIRST_BOOST_INSTALL != ON
+    set (BOOST_ROOT "./library/boost_1_80_0")
+    set (BOOST_LIBRARYDIR "./library/boost_1_80_0/stage/lib")
+endif()
 
 add_executable(${PROJECT_NAME} ${START} ${CORE})
 
-find_package(Boost 1.45.0 COMPONENTS date_time REQUIRED)
+find_package(Boost 1.75.0 COMPONENTS date_time REQUIRED)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE Boost::date_time)
@@ -56,3 +55,11 @@ set_target_properties(
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
+
+# Enable testing functionality
+enable_testing()
+set(ENABLE_TESTING ON)
+
+if(ENABLE_TESTING)
+    add_subdirectory(./test)
+endif()
