@@ -7,9 +7,6 @@ set folderName=../library/boost_1_80_0
 :: Remarks Init Boost library before install
 set boostLibraryIniScriptName=bootstrap.bat
 
-:: Remarks Folder with Boost library name
-set installFolderName=../install_boost_1_80_0
-
 if exist '%folderName%' (
     echo Folder exist
 ) else (
@@ -18,5 +15,5 @@ if exist '%folderName%' (
 	call %boostLibraryIniScriptName%
 	
 	:: Remarks Install Boost library
-	powershell -Command "./b2 install --prefix=%installFolderName%"
+	powershell -Command "./b2 -a install"
 )
