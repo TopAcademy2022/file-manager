@@ -6,12 +6,12 @@
 #include <boost/date_time.hpp>
 
 /// <summary>
-/// Статус
+/// Status
 /// </summary>
 namespace status
 {
 	/// <summary>
-	/// Код статуса
+	/// Status Code
 	/// </summary>
 	enum StatusCode
 	{
@@ -27,55 +27,56 @@ namespace status
 }
 
 /// <summary>
-/// Класс Статус
+/// class Status
 /// </summary>
 class Status
 {
 private:
 	/// <summary>
-	/// Код статуса
+	///Code status
 	/// </summary>
 	status::StatusCode _statusCode;
 public:
+
 	/// <summary>
-	/// Конструктор по умолчанию (делегирование)
+	/// default constructor (delegation)
 	/// </summary>
 	Status() : Status(status::StatusCode::Status_AllGood){}
 
 	/// <summary>
-	/// Конструктор с параметром
+	/// Constructor with parameter
 	/// </summary>
-	/// <param name="statusCode">Код статуса</param>
+	/// <param name="status Code">Code status</param>
 	Status(status::StatusCode statusCode);
 
 	/// <summary>
-	/// Получить код статуса
+	/// GetStatusCode
 	/// </summary>
-	/// <returns>Код статуса</returns>
+	/// <returns>Status Code</returns>
 	status::StatusCode GetStatusCode();
 
 	/// <summary>
-	/// Установить код статуса
+	/// Set Status Code
 	/// </summary>
-	/// <param name="newStatusCode">Новый код статуса</param>
+	/// <param name="newStatusCode">new Status Codeа</param>
 	void SetStatusCode(status::StatusCode newStatusCode);
 
 	/// <summary>
-	/// Получить наличие ошибки
+	///  Get Present Error
 	/// </summary>
-	/// <returns>Наличие ошибки</returns>
+	/// <returns>Present Error</returns>
 	bool GetPresentError();
 
 	/// <summary>
-	/// Вывести сообщение в консоль
+	/// Print Message
 	/// </summary>
-	/// <param name="addedMessage">Добавляемый текст</param>
+	/// <param name="addedMessage">added Message</param>
 	void PrintMessage(std::string addedMessage = "");
 
 	/// <summary>
-	/// Создать отчёт
+	/// Create report File
 	/// </summary>
-	/// <param name="logText">Текст отчёта</param>
+	/// <param name="log Text">report text</param>
 	void CreateLogFile(std::string logText);
 };
 
