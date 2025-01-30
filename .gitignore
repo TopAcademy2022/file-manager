@@ -12,3 +12,4 @@ _deps
 
 library/boost_1_80_0
 library/install_boost_1_80_0
+build/*
