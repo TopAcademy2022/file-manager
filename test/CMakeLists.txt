@@ -54,5 +54,5 @@ add_custom_command(
 	TARGET ${NAME_TEST_MAIN} ${NAME_TEST_FAR}
 	COMMENT "Run tests"
 	POST_BUILD
-	COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failures
+	COMMAND ${CMAKE_CTEST_COMMAND}
 )
