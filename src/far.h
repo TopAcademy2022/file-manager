@@ -20,8 +20,18 @@ public:
 
 	Far(std::string currentDirectory);
 
+	/*!
+	* @brief Print all files from folder.
+	* @param[in] pathToDirectory - Path to folder was printing.
+	*/
 	void PrintContentFromDirectory(std::string pathToDirectory = "");
 
+	/*!
+	* @brief Print all files from folder.
+	* @param[in] createDirectoryName - Dir name was created.
+	* @param[in] pathToDirectory - Path to folder.
+	* @return status::StatusCode - status of operation.
+	*/
 	status::StatusCode CreateDirectory(std::string createDirectoryName, std::string pathToDirectory = "");
 
 	status::StatusCode CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory = "");
