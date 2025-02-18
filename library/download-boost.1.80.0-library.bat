@@ -11,7 +11,7 @@ set fileName="boost_1_80_0.zip"
 set extractedFolderPath="../library"
 
 :: Remarks Download the file
-powershell -Command "(New-Object Net.WebClient).DownloadFile(%source%, %fileName%)"
+powershell -Command "(New-Object Net.WebClient).DownloadFile(%source%, '%fileName%')"
 
 :: Remarks Extract library
 where 7z >nul 2>nul
