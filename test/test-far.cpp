@@ -5,6 +5,9 @@
 #include "../src/far.h"
 #include "../src/status.h"
 
+/*!
+ * @brief calls test functions for class Far: CreateDirectory, CreateFile, PrintContentFromDirectory
+ */
 BOOST_AUTO_TEST_CASE(testFar)
 {
     Far fileManager = Far("./");
