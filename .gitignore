@@ -10,8 +10,11 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
+# Build files
+library/boost_1_80_0.*
 library/boost_1_80_0
 library/install_boost_1_80_0
 build/*
 
+# Doxygen build
 docs/html/*

@@ -23,7 +23,7 @@ if(WIN32)
     set (BOOST_LIBRARYDIR "../library/boost_1_80_0/stage/lib")
 endif()
 
-find_package(Boost 1.75.0 COMPONENTS date_time unit_test_framework REQUIRED)
+find_package(Boost 1.80.0 COMPONENTS date_time unit_test_framework REQUIRED)
 
 add_executable(${NAME_TEST_MAIN} ${TEST_MAIN})
 add_executable(${NAME_TEST_FAR} ${TEST_FAR})

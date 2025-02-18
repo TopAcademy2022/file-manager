@@ -9,17 +9,17 @@ set(
 
 set(
     CORE
-		src/far.h
-		src/far.cpp
-		src/status.h
-		src/status.cpp
+		src/far.h src/far.cpp
+		src/status.h src/status.cpp
 )
 
 # Set DEFAULT install (README.md points to this line)
-set (FIRST_BOOST_INSTALL ON)
+set (FIRST_BOOST_INSTALL OFF)
 
-# Include default library/boost_1_80_0
-include(./library/CMakeLists.txt)
+if(FIRST_BOOST_INSTALL)
+	# Include default library/boost_1_80_0
+    include(./library/CMakeLists.txt)
+endif()
 
 # Only find static libs
 set(Boost_USE_STATIC_LIBS ON)
@@ -40,7 +40,7 @@ endif()
 
 add_executable(${PROJECT_NAME} ${START} ${CORE})
 
-find_package(Boost 1.75.0 COMPONENTS date_time REQUIRED)
+find_package(Boost 1.80.0 COMPONENTS date_time REQUIRED)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE Boost::date_time)
@@ -57,9 +57,9 @@ set_target_properties(
 )
 
 # Enable testing functionality
-enable_testing()
 set(ENABLE_TESTING ON)
 
 if(ENABLE_TESTING)
+    enable_testing()
     add_subdirectory(./test)
 endif()
