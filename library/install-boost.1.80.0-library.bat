@@ -22,7 +22,7 @@ if exist '%folderName%' (
 		:: Remarks Install Boost library
 		for /f "delims=" %%i in ('where cl') do set CL_PATH=%%i
 		set CL="%CL_PATH%"
-    	powershell -Command "./b2 toolset=msvc-14.0 address-model=64 -a install"
+    	powershell -Command "./b2 toolset=msvc-14.0 address-model=64 --build-type=complete runtime-link=shared debug -a install"
 	) else if "%compilerType%" == "%gcc%" (
 		powershell -Command "./b2 -a install"
 	) else (
