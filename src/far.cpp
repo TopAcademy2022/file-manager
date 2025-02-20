@@ -147,7 +147,7 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 			std::string errorText = "Method: Far::CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory)\n";
 			// TODO: rewrite, its not worked
 			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
-			errorText.append("Файл уже был создан" + '\n');
+			errorText.append("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" + '\n');
 
 			this->_status->CreateLogFile(errorText);
 
@@ -163,8 +163,8 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 			if (this->SearchFileOrDirectory(fileName + fileType, pathToDirectory))
 			{
 				this->_status->SetStatusCode(status::StatusCode::Status_FileWasCreated);
-				// TODO: Указывать полный путь до директории
-				this->_status->PrintMessage("Путь создания: " + pathToDirectory);
+				// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				this->_status->PrintMessage("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " + pathToDirectory);
 			}
 			else
 			{

@@ -4,78 +4,62 @@
 #include <iostream>
 #include <fstream>
 #include <boost/date_time.hpp>
+#include <status_code.h>
 
 /// <summary>
-/// Статус
+/// пїЅпїЅпїЅпїЅпїЅпїЅ
 /// </summary>
-namespace status
-{
-	/// <summary>
-	/// Код статуса
-	/// </summary>
-	enum StatusCode
-	{
-		Status_AllGood = 0,
-		Error_DirectoryNotFound = 1,
-		Error_FileNotFound = 2,
-		Status_DirectoryOrFileWasFound = 3,
-		Status_DirectoryWasCreated = 4,
-		Status_FileWasCreated = 5,
-		Error_FileWasCreated = 6,
-		Error_NoAccessRights = 7
-	};
-}
 
 /// <summary>
-/// Класс Статус
+/// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 /// </summary>
 class Status
 {
 private:
 	/// <summary>
-	/// Код статуса
+	/// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
 	status::StatusCode _statusCode;
 public:
 	/// <summary>
-	/// Конструктор по умолчанию (делегирование)
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	/// </summary>
 	Status() : Status(status::StatusCode::Status_AllGood){}
 
 	/// <summary>
-	/// Конструктор с параметром
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	/// <param name="statusCode">Код статуса</param>
+	/// <param name="statusCode">пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</param>
 	Status(status::StatusCode statusCode);
 
 	/// <summary>
-	/// Получить код статуса
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	/// <returns>Код статуса</returns>
+	/// <returns>пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</returns>
 	status::StatusCode GetStatusCode();
 
 	/// <summary>
-	/// Установить код статуса
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	/// <param name="newStatusCode">Новый код статуса</param>
+	/// <param name="newStatusCode">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</param>
 	void SetStatusCode(status::StatusCode newStatusCode);
 
 	/// <summary>
-	/// Получить наличие ошибки
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	/// <returns>Наличие ошибки</returns>
+	/// <returns>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ</returns>
 	bool GetPresentError();
 
 	/// <summary>
-	/// Вывести сообщение в консоль
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	/// <param name="addedMessage">Добавляемый текст</param>
+	/// <param name="addedMessage">пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</param>
 	void PrintMessage(std::string addedMessage = "");
 
 	/// <summary>
-	/// Создать отчёт
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	/// <param name="logText">Текст отчёта</param>
+	/// <param name="logText">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ</param>
 	void CreateLogFile(std::string logText);
 };
 

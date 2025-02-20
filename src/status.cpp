@@ -1,4 +1,5 @@
 #include "status.h"
+#include "status_code.h"
 
 Status::Status(status::StatusCode statusCode)
 {
@@ -35,28 +36,28 @@ void Status::PrintMessage(std::string addedMessage)
 	switch (this->_statusCode)
 	{
 	case status::StatusCode::Status_AllGood:
-		std::cout << "Ошибок нет." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Error_DirectoryNotFound:
-		std::cout << "Указанной директории не существует." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Error_FileNotFound:
-		std::cout << "Указанного файла не существует." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Status_DirectoryOrFileWasFound:
-		std::cout << "Директория или файл существует." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Status_DirectoryWasCreated:
-		std::cout << "Директория успешно создана." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Status_FileWasCreated:
-		std::cout << "Статус: файл успешно создан." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Error_FileWasCreated:
-		std::cout << "Ошибка: файл уже был создан." << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	case status::StatusCode::Error_NoAccessRights:
-		std::cout << "У вас нет прав на создание." << std::endl;
+		std::cout << "пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ." << std::endl;
 		break;
 	}
 
