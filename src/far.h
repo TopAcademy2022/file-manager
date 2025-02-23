@@ -26,3 +26,5 @@ public:
 
 	status::StatusCode CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory = "");
 };
+
+bool Delete(const std::string& path);

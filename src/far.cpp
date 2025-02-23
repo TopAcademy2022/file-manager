@@ -191,3 +191,27 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 
 	return this->_status->GetStatusCode();
 }
+
+bool Delete(const std::string& path) {
+	try {
+		if (std::filesystem::exists(path)) {
+			if (std::filesystem::is_regular_file(path)) {
+				std::filesystem::remove(path);
+				return true;
+			}
+			else if (std::filesystem::is_directory(path)) {
+				std::filesystem::remove_all(path);
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	catch (const std::filesystem::filesystem_error& e) {
+		return false;
+	}
+	catch (const std::exception& e) {
+		return false;
+	}
+}
