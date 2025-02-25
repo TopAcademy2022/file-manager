@@ -41,4 +41,6 @@ public:
 	* @return status::StatusCode - status of file operation
 	*/
 	status::StatusCode CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory = "");
+
+	status::StatusCode Rename(std::string oldName, std::string newName, std::string pathToDirectory = "");
 };

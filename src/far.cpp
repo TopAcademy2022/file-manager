@@ -191,3 +191,77 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 
 	return this->_status->GetStatusCode();
 }
+
+status::StatusCode Far::Rename(std::string oldName, std::string newName, std::string pathToDirectory)
+{
+	if (!this->_status->GetPresentError())
+	{
+		if (pathToDirectory.empty())
+		{
+			pathToDirectory = this->_currentDirectory;
+		}
+		if (pathToDirectory[pathToDirectory.size() - 1] != '/')
+		{
+			pathToDirectory.push_back('/');
+		}
+
+		try
+		{
+			if (this->SearchFileOrDirectory(oldName, pathToDirectory) != status::StatusCode::Status_DirectoryOrFileWasFound)
+			{
+				this->_status->SetStatusCode(status::StatusCode::Error_FileNotFound);
+				this->_status->PrintMessage();
+
+				std::string errorText = "Method: Far::Rename(std::string oldName, std::string newName, std::string pathToDirectory)\n";
+				errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+				errorText.append("Исходный файл/папка не найден\n");
+
+				this->_status->CreateLogFile(errorText);
+				return this->_status->GetStatusCode();
+			}
+
+			if (this->SearchFileOrDirectory(newName, pathToDirectory) == status::StatusCode::Status_DirectoryOrFileWasFound)
+			{
+				this->_status->SetStatusCode(status::StatusCode::Error_FileExists);
+				this->_status->PrintMessage();
+
+				std::string errorText = "Method: Far::Rename(std::string oldName, std::string newName, std::string pathToDirectory)\n";
+				errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+				errorText.append("Файл/папка с новым именем уже существует\n");
+
+				this->_status->CreateLogFile(errorText);
+				return this->_status->GetStatusCode();
+			}
+
+			std::filesystem::rename(pathToDirectory + oldName, pathToDirectory + newName);
+
+			if (this->SearchFileOrDirectory(newName, pathToDirectory) == status::StatusCode::Status_DirectoryOrFileWasFound)
+			{
+				this->_status->SetStatusCode(status::StatusCode::Status_Success);
+				this->_status->PrintMessage("Успешно переименовано: " + oldName + " -> " + newName);
+			}
+			else
+			{
+				this->_status->SetStatusCode(status::StatusCode::Error_NoAccessRights);
+				this->_status->PrintMessage();
+
+				std::string errorText = "Method: Far::Rename(std::string oldName, std::string newName, std::string pathToDirectory)\n";
+				errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+
+				this->_status->CreateLogFile(errorText);
+			}
+		}
+		catch (std::exception& ex)
+		{
+			this->_status->SetStatusCode(status::StatusCode::Error_Unknown);
+			this->_status->PrintMessage();
+
+			std::string errorText = "Method: Far::Rename(std::string oldName, std::string newName, std::string pathToDirectory)\n";
+			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+
+			this->_status->CreateLogFile(errorText + ex.what() + "\n");
+		}
+	}
+
+	return this->_status->GetStatusCode();
+}
