@@ -25,6 +25,6 @@ public:
 	status::StatusCode CreateDirectory(std::string createDirectoryName, std::string pathToDirectory = "");
 
 	status::StatusCode CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory = "");
-};
 
-bool Delete(const std::string& path);
+	status::StatusCode Delete(const std::string& path);
+};
