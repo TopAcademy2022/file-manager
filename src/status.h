@@ -1,17 +1,15 @@
-#pragma once
-
-
 #include <iostream>
 #include <fstream>
 #include <boost/date_time.hpp>
+#include "status_code.h"
 
 /// <summary>
-/// Статус
+/// Status
 /// </summary>
 namespace status
 {
 	/// <summary>
-	/// Код статуса
+	/// Status code
 	/// </summary>
 	enum StatusCode
 	{
@@ -27,55 +25,54 @@ namespace status
 }
 
 /// <summary>
-/// Класс Статус
+/// Status class
 /// </summary>
 class Status
 {
 private:
 	/// <summary>
-	/// Код статуса
+	/// Status code
 	/// </summary>
 	status::StatusCode _statusCode;
 public:
 	/// <summary>
-	/// Конструктор по умолчанию (делегирование)
+	/// Default constructor (delegation)
 	/// </summary>
 	Status() : Status(status::StatusCode::Status_AllGood){}
 
 	/// <summary>
-	/// Конструктор с параметром
+	/// Constructor with parameter
 	/// </summary>
-	/// <param name="statusCode">Код статуса</param>
+	/// <param name="statusCode">Status code</param>
 	Status(status::StatusCode statusCode);
 
 	/// <summary>
-	/// Получить код статуса
+	/// Get status code
 	/// </summary>
-	/// <returns>Код статуса</returns>
+	/// <returns>Status code</returns>
 	status::StatusCode GetStatusCode();
 
 	/// <summary>
-	/// Установить код статуса
+	/// Set status code
 	/// </summary>
-	/// <param name="newStatusCode">Новый код статуса</param>
+	/// <param name="newStatusCode">New status code</param>
 	void SetStatusCode(status::StatusCode newStatusCode);
 
 	/// <summary>
-	/// Получить наличие ошибки
+	/// Check if there is an error
 	/// </summary>
-	/// <returns>Наличие ошибки</returns>
+	/// <returns>Presence of error</returns>
 	bool GetPresentError();
 
 	/// <summary>
-	/// Вывести сообщение в консоль
+	/// Print message to console
 	/// </summary>
-	/// <param name="addedMessage">Добавляемый текст</param>
+	/// <param name="addedMessage">Additional text</param>
 	void PrintMessage(std::string addedMessage = "");
 
 	/// <summary>
-	/// Создать отчёт
+	/// Create a log file
 	/// </summary>
-	/// <param name="logText">Текст отчёта</param>
+	/// <param name="logText">Log text</param>
 	void CreateLogFile(std::string logText);
 };
-
