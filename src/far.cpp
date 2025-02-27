@@ -25,14 +25,13 @@ status::StatusCode Far::SearchFileOrDirectory(std::string objectName, std::strin
 				this->_status->SetStatusCode(status::StatusCode::Error_FileNotFound);
 			}
 		}
-		catch (std::exception ex)
+		catch (const std::exception& ex)
 		{
 			this->_status->SetStatusCode(status::StatusCode::Error_DirectoryNotFound);
 			this->_status->PrintMessage();
 
 			std::string errorText = "Method: Far::SearchFileOrDirectory(std::string objectName, std::string pathToFind)\n";
-			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode());
-			errorText.append("\n");
+			errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
 
 			this->_status->CreateLogFile(errorText + ex.what() + '\n');
 		}
@@ -63,13 +62,13 @@ void Far::PrintContentFromDirectory(std::string pathToDirectory)
 				std::cout << entry.path().filename() << '\n';
 			}
 		}
-		catch (std::exception ex)
+		catch (const std::exception& ex)
 		{
 			this->_status->SetStatusCode(status::StatusCode::Error_DirectoryNotFound);
 			this->_status->PrintMessage();
 
 			std::string errorText = "Method: Far::PrintContentFromDirectory(std::string pathToDirectory)\n";
-			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+			errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
 
 			this->_status->CreateLogFile(errorText + ex.what() + "\n");
 		}
@@ -84,7 +83,7 @@ status::StatusCode Far::CreateDirectory(std::string createDirectoryName, std::st
 		{
 			pathToDirectory = this->_currentDirectory;
 		}
-		if (pathToDirectory[pathToDirectory.size() - 1] != '/')
+		if (pathToDirectory.back() != '/')
 		{
 			pathToDirectory.push_back('/');
 		}
@@ -93,7 +92,7 @@ status::StatusCode Far::CreateDirectory(std::string createDirectoryName, std::st
 		{
 			std::filesystem::create_directory(pathToDirectory + createDirectoryName);
 
-			if (this->SearchFileOrDirectory(createDirectoryName, pathToDirectory))
+			if (this->SearchFileOrDirectory(createDirectoryName, pathToDirectory) == status::StatusCode::Status_DirectoryOrFileWasFound)
 			{
 				this->_status->SetStatusCode(status::StatusCode::Status_DirectoryWasCreated);
 			}
@@ -103,18 +102,18 @@ status::StatusCode Far::CreateDirectory(std::string createDirectoryName, std::st
 				this->_status->PrintMessage();
 
 				std::string errorText = "Method: Far::CreateDirectory(std::string createDirectoryName, std::string pathToDirectory)\n";
-				errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+				errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
 
 				this->_status->CreateLogFile(errorText);
 			}
 		}
-		catch (std::exception ex)
+		catch (const std::exception& ex)
 		{
 			this->_status->SetStatusCode(status::StatusCode::Error_DirectoryNotFound);
 			this->_status->PrintMessage();
 
 			std::string errorText = "Method: Far::CreateDirectory(std::string createDirectoryName, std::string pathToDirectory)\n";
-			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+			errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
 
 			this->_status->CreateLogFile(errorText + ex.what() + "\n");
 		}
@@ -131,11 +130,11 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 		{
 			pathToDirectory = this->_currentDirectory;
 		}
-		if (pathToDirectory[pathToDirectory.size() - 1] != '/')
+		if (pathToDirectory.back() != '/')
 		{
 			pathToDirectory.push_back('/');
 		}
-		if (fileType[0] != '.')
+		if (fileType.front() != '.')
 		{
 			fileType = '.' + fileType;
 		}
@@ -145,9 +144,8 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 			this->_status->PrintMessage();
 			
 			std::string errorText = "Method: Far::CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory)\n";
-			// TODO: rewrite, its not worked
-			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
-			errorText.append("���� ��� ��� ������" + '\n');
+			errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
+			errorText.append("File already exists.\n");
 
 			this->_status->CreateLogFile(errorText);
 
@@ -156,15 +154,13 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 
 		try
 		{
-			std::ofstream file = std::ofstream();
-			file.open(pathToDirectory + fileName + fileType);
+			std::ofstream file(pathToDirectory + fileName + fileType);
 			file.close();
 
-			if (this->SearchFileOrDirectory(fileName + fileType, pathToDirectory))
+			if (this->SearchFileOrDirectory(fileName + fileType, pathToDirectory) == status::StatusCode::Status_DirectoryOrFileWasFound)
 			{
 				this->_status->SetStatusCode(status::StatusCode::Status_FileWasCreated);
-				// TODO: ��������� ������ ���� �� ����������
-				this->_status->PrintMessage("���� ��������: " + pathToDirectory);
+				this->_status->PrintMessage("File created at: " + pathToDirectory);
 			}
 			else
 			{
@@ -172,18 +168,18 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 				this->_status->PrintMessage();
 
 				std::string errorText = "Method: Far::CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory)\n";
-				errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+				errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
 
 				this->_status->CreateLogFile(errorText);
 			}
 		}
-		catch (std::exception ex)
+		catch (const std::exception& ex)
 		{
 			this->_status->SetStatusCode(status::StatusCode::Error_DirectoryNotFound);
 			this->_status->PrintMessage();
 
 			std::string errorText = "Method: Far::CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory)\n";
-			errorText.append("ErrorStatusCode: " + this->_status->GetStatusCode() + '\n');
+			errorText.append("ErrorStatusCode: " + std::to_string(this->_status->GetStatusCode()) + '\n');
 
 			this->_status->CreateLogFile(errorText + ex.what() + "\n");
 		}
