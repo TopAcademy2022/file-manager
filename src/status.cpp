@@ -75,7 +75,7 @@ void Status::CreateLogFile(std::string logText)
 	try {
 		logFile.open(DEFAULT_LOG_FILE_DIRECTORY + DEFAULT_LOG_FILE_NAME + DEFAULT_LOG_FILE_TYPE, std::ios::app);
 	}
-	catch {
+	catch (const std::exception& ex) {
 		std::cerr << "Error: Failed to open log file." << std::endl;
 	}
 

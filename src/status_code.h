@@ -3,7 +3,7 @@
 namespace status
 {
 	/// <summary>
-	/// ��� �������
+	/// Status code
 	/// </summary>
 	enum StatusCode
 	{
