@@ -71,11 +71,12 @@ void Status::CreateLogFile(std::string logText)
 	const std::string DEFAULT_LOG_FILE_TYPE = ".log";
 
 	std::ofstream logFile;
-	logFile.open(DEFAULT_LOG_FILE_DIRECTORY + DEFAULT_LOG_FILE_NAME + DEFAULT_LOG_FILE_TYPE, std::ios::app);
 
-	if (!logFile) {
+	try {
+		logFile.open(DEFAULT_LOG_FILE_DIRECTORY + DEFAULT_LOG_FILE_NAME + DEFAULT_LOG_FILE_TYPE, std::ios::app);
+	}
+	catch {
 		std::cerr << "Error: Failed to open log file." << std::endl;
-		return;
 	}
 
 	boost::posix_time::ptime timeLocal = boost::posix_time::second_clock::local_time();
