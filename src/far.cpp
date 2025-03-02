@@ -192,6 +192,7 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 	return this->_status->GetStatusCode();
 }
 
+
 status::StatusCode Far::Delete(std::string path) {
 	try {
 		if (std::filesystem::exists(path)) {

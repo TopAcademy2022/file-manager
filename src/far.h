@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <string>
 #include <filesystem>
 #include <iostream>
@@ -26,5 +25,5 @@ public:
 
 	status::StatusCode CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory = "");
 
-	status::StatusCode Delete(const std::string& path);
+	status::StatusCode Delete(std::string path);
 };
