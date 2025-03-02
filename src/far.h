@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <string>
 #include <filesystem>
 #include <iostream>
@@ -41,4 +40,6 @@ public:
 	* @return status::StatusCode - status of file operation
 	*/
 	status::StatusCode CreateFile(std::string fileName, std::string fileType, std::string pathToDirectory = "");
+
+	status::StatusCode Delete(std::string path);
 };

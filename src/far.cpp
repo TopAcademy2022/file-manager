@@ -191,3 +191,27 @@ status::StatusCode Far::CreateFile(std::string fileName, std::string fileType, s
 
 	return this->_status->GetStatusCode();
 }
+
+
+status::StatusCode Far::Delete(std::string path) {
+	try {
+		if (std::filesystem::exists(path)) {
+			if (std::filesystem::is_regular_file(path)) {
+				if (std::filesystem::remove(path)) {
+					return status::StatusCode::Status_AllGood;
+				}
+			}
+			else if (std::filesystem::is_directory(path)) {
+				if (std::filesystem::remove_all(path)) {
+					return status::StatusCode::Status_AllGood;
+				}
+			}
+		}
+		else {
+			return status::StatusCode::Error_PathNotFound;
+		}
+	}
+	catch (const std::exception& e) {
+		return status::StatusCode::Error_PathNotFound;
+	}
+}
