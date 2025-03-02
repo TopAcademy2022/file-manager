@@ -22,7 +22,8 @@ namespace status
 		Status_DirectoryWasCreated = 4,
 		Status_FileWasCreated = 5,
 		Error_FileWasCreated = 6,
-		Error_NoAccessRights = 7
+		Error_NoAccessRights = 7,
+		Error_PathNotFound = 8
 	};
 }
 
