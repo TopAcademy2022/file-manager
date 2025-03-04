@@ -15,16 +15,18 @@ if exist '%folderName%' (
 ) else (
 	:: Remarks Call init script
 	cd %folderName%
-	call %boostLibraryIniScriptName%
+	
 	
 	:: Remarks Install Boost library
 	if "%compilerType%" == "msvc" (
 		:: Remarks Install Boost library
 		for /f "delims=" %%i in ('where cl') do set CL_PATH=%%i
 		set CL="%CL_PATH%"
-    	powershell -Command "./b2 toolset=msvc-14.0 address-model=64 --build-type=complete runtime-link=shared debug -a install"
+		powershell -Command "./b2 --clean-all"
+    	powershell -Command "./b2 toolset=msvc-14.0 address-model=64 -a install --release --with-date_time --with_unit_test_framework -j4"
 	) else if "%compilerType%" == "%gcc%" (
-		powershell -Command "./b2 -a install"
+		powershell -Command "./b2 --clean-all"
+		powershell -Command "./b2 -j -a install --release"
 	) else (
 		echo The variable "%compilerType%" is neither equal.
 	)

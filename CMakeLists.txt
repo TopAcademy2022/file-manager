@@ -14,7 +14,7 @@ set(
 )
 
 # Set DEFAULT install (README.md points to this line)
-set (FIRST_BOOST_INSTALL OFF)
+set (FIRST_BOOST_INSTALL ON)
 
 if(FIRST_BOOST_INSTALL)
 	# Include default library/boost_1_80_0
