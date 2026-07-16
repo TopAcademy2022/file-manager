@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    # Install Boost
-    - name: Install boost
-      run: sudo apt-get update && sudo apt-get install libboost-all-dev
+    # Install only the Boost libraries used by the project.
+    - name: Install required Boost libraries
+      run: sudo apt-get update && sudo apt-get install --no-install-recommends libboost-date-time-dev libboost-test-dev
       
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.

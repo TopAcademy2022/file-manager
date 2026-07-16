@@ -10,8 +10,9 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
-library/boost_1_80_0
-library/install_boost_1_80_0
-build/*
+build*/
+
+library/.cache/
+library/boost_1_80_0/
 
 docs/html/*
