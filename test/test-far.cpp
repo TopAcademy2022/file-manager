@@ -4,6 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include "../src/far.h"
 #include "../src/status.h"
+#include "../src/status_code.h"
 
 /*!
  * @brief calls test functions for class Far: CreateDirectory, CreateFile, PrintContentFromDirectory

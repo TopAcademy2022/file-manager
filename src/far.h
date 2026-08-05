@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include "status.h"
+#include "status_code.h"
 
 class Far
 {
